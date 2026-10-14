@@ -1,75 +1,61 @@
 # cyberpc-angel theme
 
-Cyberpunk theme for [omalauncher](https://github.com/omalauncher/omalauncher) — designed from the [cyberpcangel.com](https://cyberpcangel.com/) website aesthetic.
+Cyberpunk theme for [omalauncher](https://github.com/omalauncher/omalauncher) inspired by [cyberpcangel.com](https://cyberpcangel.com/). Features a dark navy background with cyan, magenta, and lavender accents.
 
-## Colors
+## What's included
 
-| Role | Hex | Description |
-|------|-----|-------------|
-| background | `#0a0a24` | Dark navy |
-| foreground | `#c8c8ff` | Lavender |
-| cyan | `#00ffff` | Neon cyan (accents, keyboard) |
-| magenta | `#ff00ff` | Hot magenta (highlights) |
-| green | `#00ff88` | Neon green (success, terminal) |
-| red | `#ff3366` | Hot red (errors, alerts) |
-| yellow | `#ffaa00` | Amber (warnings) |
+- **colors.toml** — Complete cyberpunk palette (navy `#0a0a24`, cyan `#00ffff`, magenta `#ff00ff`, lavender `#c8c8ff`)
+- **Backgrounds** — 3 high-res PNGs from cyberpcangel.com
+- **Config templates** — All `.tpl` files for themed apps (ghostty, kitty, hyprland, btop, neovim, helix, VS Code, etc.)
+- **Install script** — One-command setup with background rotation
 
 ## Quick install
 
 ```bash
-# Download everything
-curl -O https://raw.githubusercontent.com/cy-pca/cyberpc-angel-theme/main/cyberpc-angel-install.sh
-curl -O https://raw.githubusercontent.com/cy-pca/cyberpc-angel-theme/main/bg-rotate.sh
-curl -O https://raw.githubusercontent.com/cy-pca/cyberpc-angel-theme/main/colors.toml
-
-chmod +x cyberpc-angel-install.sh bg-rotate.sh
+# Clone this repo and run
 bash cyberpc-angel-install.sh
 ```
 
-Then restart omalauncher (close from recent apps, reopen).
-
 ## Manual install
 
-1. Place `colors.toml` at `~/.local/share/omarchy/themes/cyberpc-angel/colors.toml`
-2. Create `backgrounds/` directory and drop in `.png` files
+1. Copy `colors.toml` to `~/.local/share/omarchy/themes/cyberpc-angel/colors.toml`
+2. Copy `backgrounds/` to `~/.local/share/omarchy/themes/cyberpc-angel/backgrounds/`
 3. Set `~/.local/state/omarchy/current/theme.name` to `cyberpc-angel`
 4. Update `~/.config/omalauncher/style/style.toml`:
    ```toml
    theme = "cyberpc-angel"
    background = "blue-angel-hero.png"
    ```
-5. Run theme regeneration (usually `/usr/bin/env -i bash /root/regen-theme.sh`)
+5. Run theme regeneration (usually `/usr/local/bin/regen-theme`)
 6. Restart omalauncher
 
 ## Background rotation
 
-`bg-rotate.sh` picks a random background PNG every 3 minutes. Run in the background:
+`bg-rotate.sh` randomly cycles through the included backgrounds every 3 minutes. Start it in the background:
 
 ```bash
 nohup bash -c 'while true; do /usr/local/bin/bg-rotate.sh >/dev/null 2>&1; sleep 180; done' &>/dev/null &
 ```
 
-This updates `style.toml` in real time — the launcher picks up the change immediately.
+## Color palette
 
-## Backgrounds included
-
-| File | Size | Source |
-|------|------|--------|
-| `blue-angel-hero.png` | 256×256 | Blue angel character icon |
-| `cyber-hd.png` | 2048×2048 | Cyberpunk cityscape |
-| `hans-bg.png` | 2048×2048 | Hans variant |
-
-All images from cyberpcangel.com:
-- https://cyberpcangel.com/wp-content/uploads/2024/12/cyberpc_0.png
-- https://cyberpcangel.com/wp-content/uploads/2024/10/local__txt2img__q8_0__euler_a__Juggernaut-X-RunDiffusion-NSFW.safetensors__24176_3.png
-- https://cyberpcangel.com/wp-content/uploads/2024/10/local__txt2img__q8_0__euler_a__hans-v4.4.safetensors__18719.png
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Dark Navy | `#0a0a24` | Background |
+| Lavender | `#c8c8ff` | Foreground, text |
+| Cyan | `#00ffff` | Primary accent, keyboard, highlights |
+| Magenta | `#ff00ff` | Secondary accent |
+| Neon Green | `#00ff88` | Terminal, success states |
+| Hot Red | `#ff3366` | Errors, alerts |
+| Amber | `#ffaa00` | Warnings |
+| Electric Blue | `#8080ff` | Blue accent |
 
 ## Applies to
 
-- Terminal emulators (kitty, ghostty, alacritty, foot)
+- Terminals (ghostty, kitty, alacritty, foot)
 - Window manager (hyprland)
-- Btop (system monitor)
-- Neovim, Helix, VS Code
+- Btop system monitor
+- Editors (neovim, helix, VS Code)
 - Shell prompt (starship)
 - Keyboard backlight (CKB)
 - Chrome/Chromium
